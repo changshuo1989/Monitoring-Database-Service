@@ -2,20 +2,26 @@ package com.db.service.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.db.service.dao.ConnectionDAO;
 import com.db.service.dao.RuleDAO;
 import com.db.service.dao.RuleStatusDAO;
 import com.db.service.dao.RuleTypeDAO;
 import com.db.service.dao.ScheduleDAO;
+import com.db.service.dto.CheckDTO;
+import com.db.service.dto.ConnectionDTO;
+import com.db.service.dto.ExecutionServiceRuleDTO;
 import com.db.service.dto.OfflineSchedulerRuleDTO;
+import com.db.service.dto.RecipientDTO;
 import com.db.service.dto.RuleDTO;
+import com.db.service.entity.Check;
 import com.db.service.entity.Connection;
+import com.db.service.entity.Recipient;
 import com.db.service.entity.Rule;
 import com.db.service.entity.RuleStatus;
 import com.db.service.entity.RuleType;
@@ -132,6 +138,51 @@ public class RuleService {
 			e.printStackTrace();
 		}
 		
+		return resList;
+	}
+	
+	public List<ExecutionServiceRuleDTO> getTriggeredRulesForExecutionService(List<Integer> ids){
+		List<ExecutionServiceRuleDTO> resList = new ArrayList<>();
+		try{
+			if (ids != null && ids.size() > 0){
+				//dedupe
+				ids = new ArrayList<>(new HashSet<>(ids));
+				for (int i=0; i<ids.size(); i++){
+					int ruleId = ids.get(i);
+					if(ruleRepo.exists(ruleId)){
+						Rule rule = ruleRepo.getOne(ruleId);
+					
+						Connection conn = rule.getConnection();
+						List<Check> checks = rule.getChecks();
+						List<Recipient> recipients = rule.getRecipients();
+						
+						RuleDTO ruleDto = new RuleDTO(rule);
+						ConnectionDTO connDto = new ConnectionDTO(conn);
+						
+						List<CheckDTO> checkDtos = new ArrayList<>();
+						List<RecipientDTO> recipientDtos = new ArrayList<>();
+						
+						if(checks != null && checks.size() > 0){
+							for(int j=0; j<checks.size(); j++){
+								CheckDTO checkDto = new CheckDTO(checks.get(j));
+								checkDtos.add(checkDto);
+							}
+						}
+						if(recipients != null && recipients.size() > 0){
+							for (int j =0; j<recipients.size(); j++){
+								RecipientDTO recipientDto = new RecipientDTO(recipients.get(j));
+								recipientDtos.add(recipientDto);
+							}
+						}
+						ExecutionServiceRuleDTO executionServiceRuleDTO = new ExecutionServiceRuleDTO(ruleDto, connDto, checkDtos, recipientDtos);
+						resList.add(executionServiceRuleDTO);
+					}
+				}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		return resList;
 	}
 	

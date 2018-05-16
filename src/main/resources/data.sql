@@ -35,9 +35,6 @@ value = "Monthly";
 INSERT INTO recipient_types (id, value) VALUES(1, "Email") ON DUPLICATE KEY UPDATE    
 value = "Email";
 
-INSERT INTO recipient_types (id, value) VALUES(2, "Pageduty") ON DUPLICATE KEY UPDATE    
-value = "Pageduty";
-
 INSERT INTO recipient_types (id, value) VALUES(3, "Slack") ON DUPLICATE KEY UPDATE    
 value = "Slack";
 
@@ -66,8 +63,8 @@ value = "Is all of";
 INSERT INTO check_logic_types (id, value) VALUES(2, "Is any of") ON DUPLICATE KEY UPDATE    
 value = "Is any of";
 
-INSERT INTO check_logic_types (id, value) VALUES(3, "Is not any of") ON DUPLICATE KEY UPDATE    
-value = "Is not any of";
+--INSERT INTO check_logic_types (id, value) VALUES(3, "Is not any of") ON DUPLICATE KEY UPDATE    
+--value = "Is not any of";
 
 
 --check_conjunction_types--
@@ -81,6 +78,9 @@ value = "OR";
 --check_operator_types--
 INSERT INTO check_operator_types (id, value) VALUES(1, "=") ON DUPLICATE KEY UPDATE    
 value = "=";
+
+INSERT INTO check_operator_types (id, value) VALUES(2, ">") ON DUPLICATE KEY UPDATE    
+value = "!=";
 
 INSERT INTO check_operator_types (id, value) VALUES(2, ">") ON DUPLICATE KEY UPDATE    
 value = ">";

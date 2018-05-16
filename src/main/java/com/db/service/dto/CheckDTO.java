@@ -40,6 +40,8 @@ public class CheckDTO {
 		
 	}
 	
+	
+	
 	public Check toCheck(Rule rule, CheckBenchmarkType checkBenchmarkType, CheckConjunctionType checkConjunctionType, 
 			CheckLogicType checkLogicType, CheckOperatorType checkOperatorType){
 		
