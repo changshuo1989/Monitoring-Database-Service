@@ -63,6 +63,9 @@ public class Rule {
 	
 	@Column(nullable=true, name="last_executed", columnDefinition="DATETIME")
 	private Date lastExecuted;
+	
+	@Column(nullable=false, name="notify_when_empty_data", columnDefinition="DATETIME")
+	private boolean notifyWhenEmptyData;
 
 	public int getId() {
 		return id;
@@ -174,6 +177,14 @@ public class Rule {
 
 	public void setRecipients(List<Recipient> recipients) {
 		this.recipients = recipients;
+	}
+
+	public boolean getNotifyWhenEmptyData() {
+		return notifyWhenEmptyData;
+	}
+
+	public void setNotifyWhenEmptyData(boolean notifyWhenEmptyData) {
+		this.notifyWhenEmptyData = notifyWhenEmptyData;
 	}
 	
 	

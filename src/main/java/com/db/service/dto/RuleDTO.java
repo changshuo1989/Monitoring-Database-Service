@@ -34,6 +34,8 @@ public class RuleDTO {
 	
 	private String lastExecuted;
 	
+	private boolean notifyWhenEmptyData;
+	
 	public RuleDTO(){}
 	
 	public RuleDTO(Rule rule) throws Exception{
@@ -50,6 +52,7 @@ public class RuleDTO {
 		this.lastUpdated = DateTimeAdapter.fromDateTimeToString(rule.getLastUpdated());
 		this.lastTriggered = DateTimeAdapter.fromDateTimeToString(rule.getLastTriggered());
 		this.lastExecuted = DateTimeAdapter.fromDateTimeToString(rule.getLastExecuted());
+		this.notifyWhenEmptyData = rule.getNotifyWhenEmptyData();
 	}
 	
 	
@@ -64,6 +67,7 @@ public class RuleDTO {
 		rule.setLastUpdated(new Date());
 		rule.setStartTime(DateTimeAdapter.fromStringToDateTime(this.startTime));
 		rule.setEndTime(DateTimeAdapter.fromStringToDateTime(this.endTime));
+		rule.setNotifyWhenEmptyData(this.notifyWhenEmptyData);
 		return rule;
 	}
 
@@ -110,4 +114,10 @@ public class RuleDTO {
 	public int getConnectionId() {
 		return connectionId;
 	}
+
+	public boolean getNotifyWhenEmptyData() {
+		return notifyWhenEmptyData;
+	}
+	
+	
 }

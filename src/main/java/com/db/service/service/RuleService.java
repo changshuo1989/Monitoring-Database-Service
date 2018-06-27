@@ -232,6 +232,8 @@ public class RuleService {
 				
 				Date lastUdapted = new Date();
 				
+				boolean notifyWhenEmptyData = ruleDTO.getNotifyWhenEmptyData();
+				
 				Rule rule = ruleRepo.findOne(id);
 				if(rule != null && rule.getConnection().getId() == connId && ruleType != null && ruleStatus != null){
 					rule.setName(name);
@@ -241,6 +243,8 @@ public class RuleService {
 					rule.setStartTime(startTime);
 					rule.setEndTime(endTime);
 					rule.setLastUpdated(lastUdapted);
+					rule.setNotifyWhenEmptyData(notifyWhenEmptyData);
+	
 					ruleRepo.save(rule);
 					res=true;
 				}

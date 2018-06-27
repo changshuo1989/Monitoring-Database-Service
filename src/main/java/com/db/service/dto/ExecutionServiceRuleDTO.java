@@ -10,6 +10,7 @@ public class ExecutionServiceRuleDTO {
 	private String content;
 	private String ruleStatus;
 	private String ruleType;
+	private boolean notifyWhenEmptyData;
 	private ConnectionDTO connection;
 	private List<CheckDTO> checks;
 	private List<RecipientDTO> recipients;
@@ -23,6 +24,7 @@ public class ExecutionServiceRuleDTO {
 		this.content = rule.getContent();
 		this.ruleStatus = rule.getRuleStatus();
 		this.ruleType = rule.getRuleType();
+		this.notifyWhenEmptyData = rule.getNotifyWhenEmptyData();
 		this.connection = conn;
 		this.checks = checks;
 		this.recipients = recipients;
@@ -76,6 +78,16 @@ public class ExecutionServiceRuleDTO {
 	}
 	public void setRecipients(List<RecipientDTO> recipients) {
 		this.recipients = recipients;
+	}
+
+
+	public boolean getNotifyWhenEmptyData() {
+		return notifyWhenEmptyData;
+	}
+
+
+	public void setNotifyWhenEmptyData(boolean notifyWhenEmptyData) {
+		this.notifyWhenEmptyData = notifyWhenEmptyData;
 	}
 	
 	
