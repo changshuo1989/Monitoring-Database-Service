@@ -79,22 +79,22 @@ value = "OR";
 INSERT INTO check_operator_types (id, value) VALUES(1, "=") ON DUPLICATE KEY UPDATE    
 value = "=";
 
-INSERT INTO check_operator_types (id, value) VALUES(2, ">") ON DUPLICATE KEY UPDATE    
+INSERT INTO check_operator_types (id, value) VALUES(2, "!=") ON DUPLICATE KEY UPDATE    
 value = "!=";
 
-INSERT INTO check_operator_types (id, value) VALUES(2, ">") ON DUPLICATE KEY UPDATE    
+INSERT INTO check_operator_types (id, value) VALUES(3, ">") ON DUPLICATE KEY UPDATE    
 value = ">";
 
-INSERT INTO check_operator_types (id, value) VALUES(3, ">=") ON DUPLICATE KEY UPDATE    
+INSERT INTO check_operator_types (id, value) VALUES(4, ">=") ON DUPLICATE KEY UPDATE    
 value = ">=";
 
-INSERT INTO check_operator_types (id, value) VALUES(4, "<") ON DUPLICATE KEY UPDATE    
+INSERT INTO check_operator_types (id, value) VALUES(5, "<") ON DUPLICATE KEY UPDATE    
 value = "<";
 
-INSERT INTO check_operator_types (id, value) VALUES(5, "<=") ON DUPLICATE KEY UPDATE    
+INSERT INTO check_operator_types (id, value) VALUES(6, "<=") ON DUPLICATE KEY UPDATE    
 value = "<=";
 
-INSERT INTO check_operator_types (id, value) VALUES(6, "CONTAINS") ON DUPLICATE KEY UPDATE    
+INSERT INTO check_operator_types (id, value) VALUES(7, "CONTAINS") ON DUPLICATE KEY UPDATE    
 value = "CONTAINS";
 
 
