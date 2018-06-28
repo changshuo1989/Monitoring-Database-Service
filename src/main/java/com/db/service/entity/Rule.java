@@ -64,7 +64,7 @@ public class Rule {
 	@Column(nullable=true, name="last_executed", columnDefinition="DATETIME")
 	private Date lastExecuted;
 	
-	@Column(nullable=false, name="notify_when_empty_data", columnDefinition="DATETIME")
+	@Column(nullable=false, name="notify_when_empty_data", columnDefinition="BOOLEAN DEFAULT false")
 	private boolean notifyWhenEmptyData;
 
 	public int getId() {
