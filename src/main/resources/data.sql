@@ -35,8 +35,12 @@ value = "Monthly";
 INSERT INTO recipient_types (id, value) VALUES(1, "Email") ON DUPLICATE KEY UPDATE    
 value = "Email";
 
+INSERT INTO recipient_types (id, value) VALUES(2, "Datadog") ON DUPLICATE KEY UPDATE    
+value = "Datadog";
+
 INSERT INTO recipient_types (id, value) VALUES(3, "Slack") ON DUPLICATE KEY UPDATE    
 value = "Slack";
+
 
 
 -- rule_types --
@@ -65,6 +69,7 @@ value = "Is any of";
 
 --INSERT INTO check_logic_types (id, value) VALUES(3, "Is not any of") ON DUPLICATE KEY UPDATE    
 --value = "Is not any of";
+
 
 
 --check_conjunction_types--
