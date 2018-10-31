@@ -3,6 +3,7 @@ package com.db.service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ public class ExecutionServiceController {
 	@Autowired
 	RuleService ruleService;
 	
+	@CrossOrigin
 	@RequestMapping(value = "/execution-service/rules/triggered/{ids}", method=RequestMethod.GET)
 	public List<ExecutionServiceRuleDTO> getTriggeredRulesForExecutionService(@PathVariable("ids") List<Integer> ids){
 		return ruleService.getTriggeredRulesForExecutionService(ids);

@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+
 import org.apache.tomcat.util.codec.binary.Base64;
 
 
@@ -14,7 +15,6 @@ public class AESCryptTool {
 	
 	private static final String ALGORITHM = "AES";
 	private static final String KEY = "f520";
-	
 	private static final int SALT_SEED = 12;
 	
 	

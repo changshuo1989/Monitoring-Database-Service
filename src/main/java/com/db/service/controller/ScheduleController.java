@@ -3,6 +3,7 @@ package com.db.service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,26 +19,31 @@ public class ScheduleController {
 	@Autowired
 	ScheduleService scheduleService;
 	
+	@CrossOrigin
 	@RequestMapping(value="/schedules", method=RequestMethod.GET)
 	public List<ScheduleDTO> getSchedules(){
 		return scheduleService.getSchedules();
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/schedules/{schedule_id}", method=RequestMethod.GET)
 	public ScheduleDTO getScheduleById(@PathVariable("schedule_id") String scheduleIdStr){
 		return scheduleService.getScheduleById(scheduleIdStr);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rules/{rule_id}/schedules", method=RequestMethod.GET)
 	public List<ScheduleDTO> getSchedulesByRuleId(@PathVariable("rule_id") String ruleIdStr){
 		return scheduleService.getSchedulesByRuleId(ruleIdStr);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rules/{rule_id}/schedules", method=RequestMethod.POST)
 	public boolean saveSchedule(@PathVariable("rule_id") String ruleIdStr, @RequestBody(required=false) ScheduleDTO scheduleDTO){
 		return scheduleService.saveSchedule(ruleIdStr, scheduleDTO);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rules/{rule_id}/schedules/{schedule_id}", method=RequestMethod.PUT)
 	public boolean updateSchedule(@PathVariable("rule_id") String ruleIdStr, 
 			@PathVariable("schedule_id") String scheduleIdStr, 

@@ -3,6 +3,7 @@ package com.db.service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,27 +19,32 @@ public class CheckController {
 	@Autowired
 	CheckService checkService;
 	
+	@CrossOrigin
 	@RequestMapping(value="/checks", method=RequestMethod.GET)
 	public List<CheckDTO> getChecks(){
 		return checkService.getChecks();
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/checks/{check_id}", method=RequestMethod.GET)
 	public CheckDTO getCheckById(@PathVariable("check_id") String checkIdStr){
 		return checkService.getCheckById(checkIdStr);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rules/{rule_id}/checks", method=RequestMethod.GET)
 	public List<CheckDTO> getChecksByRuleId(@PathVariable("rule_id") String ruleIdStr){
 		return checkService.getChecksByRuleId(ruleIdStr);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rules/{rule_id}/checks", method=RequestMethod.POST)
 	public boolean saveCheck(@PathVariable("rule_id") String ruleIdStr, 
 			@RequestBody(required=false) CheckDTO checkDTO){
 		return checkService.saveCheck(ruleIdStr, checkDTO);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rules/{rule_id}/checks/{check_id}", method=RequestMethod.PUT)
 	public boolean updateChcek(@PathVariable("rule_id") String ruleIdStr, 
 			@PathVariable("check_id") String checkIdStr,
