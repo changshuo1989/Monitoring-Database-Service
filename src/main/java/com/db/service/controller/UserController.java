@@ -33,7 +33,7 @@ public class UserController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value="/users", method=RequestMethod.POST)
+	@RequestMapping(value="/user", method=RequestMethod.POST)
 	public UserDTO getUsersByEmailAndPassword(@RequestBody(required=false) UserDTO userDTO){
 		return userService.getUserByEmailAndPassword(userDTO);
 	}
