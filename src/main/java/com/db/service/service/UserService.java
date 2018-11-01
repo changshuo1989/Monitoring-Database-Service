@@ -63,7 +63,7 @@ public class UserService {
 			if(email != null && email.length() != 0 && unEncryptedPassword != null && unEncryptedPassword.length() != 0){
 				List<User> users = userRepo.findUserfromEmail(email);
 				if(users != null && users.size() == 1){
-					User u = users.get(1);
+					User u = users.get(0);
 					if(BCryptTool.check(unEncryptedPassword, u.getPassword())){
 						resDTO = new UserDTO(u);
 					}
