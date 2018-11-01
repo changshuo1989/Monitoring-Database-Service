@@ -1,6 +1,7 @@
 package com.db.service.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,5 +21,8 @@ public interface UserDAO extends JpaRepository<User, Integer> {
 	public void updateUserById(@Param("firstname") String firstname, @Param("lastname") String lastname,
 			@Param("username") String username, @Param("email") String email, @Param("isActive") boolean isActive,
 			@Param("lastUpdated") Date lastUpdated, @Param("id") int id);
+	
+	@Query(value = "SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
+	public List<User> findUserfromEmail(@Param("email") String email);
 
 }

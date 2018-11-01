@@ -12,6 +12,7 @@ import com.db.service.dao.UserTypeDAO;
 import com.db.service.dto.UserDTO;
 import com.db.service.entity.User;
 import com.db.service.entity.UserType;
+import com.db.service.utility.BCryptTool;
 
 @Component
 public class UserService {
@@ -52,6 +53,29 @@ public class UserService {
 		return resList;
 	}
 
+	
+	public UserDTO getUserByEmailAndPassword(UserDTO userDTO){
+		UserDTO resDTO = null;
+		try{
+			String email = userDTO.getEmail();
+			String unEncryptedPassword = userDTO.getPassword();
+			
+			if(email != null && email.length() != 0 && unEncryptedPassword != null && unEncryptedPassword.length() != 0){
+				List<User> users = userRepo.findUserfromEmail(email);
+				if(users != null && users.size() == 1){
+					User u = users.get(1);
+					if(BCryptTool.check(unEncryptedPassword, u.getPassword())){
+						resDTO = new UserDTO(u);
+					}
+				}
+			}
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return resDTO;
+	}
 	
 	public UserDTO getUserById(String userIdStr){
 		UserDTO userDTO = null;
