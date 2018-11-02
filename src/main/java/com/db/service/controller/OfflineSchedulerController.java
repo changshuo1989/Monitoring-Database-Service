@@ -20,13 +20,12 @@ public class OfflineSchedulerController {
 	@Autowired
 	RuleService ruleService;
 	
-	@CrossOrigin
+
 	@RequestMapping(value="/offline-scheduler/rules/{rule_status}", method=RequestMethod.GET)
 	public List<OfflineSchedulerRuleDTO> getRuleBasedOnStatusForOffflineScheduler(@PathVariable("rule_status") String ruleStatus){
 		return ruleService.getRulesByStatusForOfflineScheduler(ruleStatus);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(value="/offline-scheduler/rules/triggered", method=RequestMethod.POST)
 	public boolean updateTriggeredRulesAndSchedules(@RequestBody(required=false) Map<Integer, List<Integer>> triggeredRulesSchedules){
 		return ruleService.updateTriggeredRulesAndSchedules(triggeredRulesSchedules);
