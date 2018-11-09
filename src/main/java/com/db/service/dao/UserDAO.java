@@ -19,7 +19,16 @@ public interface UserDAO extends JpaRepository<User, Integer> {
 	@Query(value = "UPDATE User u SET u.firstname = :firstname, u.lastname = :lastname,"
 			+ " u.username = :username, u.email = :email, u.isActive = :isActive, " + "u.lastUpdated = :lastUpdated WHERE u.id = :id")
 	public void updateUserById(@Param("firstname") String firstname, @Param("lastname") String lastname,
-			@Param("username") String username, @Param("email") String email, @Param("isActive") boolean isActive,
+			@Param("username") String username, @Param("email") String email,  @Param("isActive") boolean isActive,
+			@Param("lastUpdated") Date lastUpdated, @Param("id") int id);
+	
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE User u SET u.firstname = :firstname, u.lastname = :lastname,"
+			+ " u.username = :username, u.email = :email, u.password = :password, u.isActive = :isActive, " + "u.lastUpdated = :lastUpdated WHERE u.id = :id")
+	public void updateUserByIdWithPassword(@Param("firstname") String firstname, @Param("lastname") String lastname,
+			@Param("username") String username, @Param("email") String email, @Param("password") String password, @Param("isActive") boolean isActive,
 			@Param("lastUpdated") Date lastUpdated, @Param("id") int id);
 	
 	@Query(value = "SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")

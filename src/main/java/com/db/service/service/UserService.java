@@ -123,7 +123,15 @@ public class UserService {
 				String email = userDTO.getEmail();
 				boolean isActive = userDTO.getIsActive();
 				Date lastUpdated = new Date();
-				userRepo.updateUserById(firstname, lastname, username, email, isActive, lastUpdated, id);
+				
+				if(userDTO.getPassword() == null || userDTO.getPassword().equals("")){
+					userRepo.updateUserById(firstname, lastname, username, email,  isActive, lastUpdated, id);
+				}
+				else{
+					String encryptPassword = BCryptTool.encrypt(userDTO.getPassword());
+					userRepo.updateUserByIdWithPassword(firstname, lastname, username, email, encryptPassword, isActive, lastUpdated, id);
+				}
+				
 				res = true;
 			}
 		} catch (Exception e) {
