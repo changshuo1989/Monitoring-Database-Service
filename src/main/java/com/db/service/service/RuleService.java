@@ -153,29 +153,35 @@ public class RuleService {
 						Rule rule = ruleRepo.getOne(ruleId);
 					
 						Connection conn = rule.getConnection();
-						List<Check> checks = rule.getChecks();
-						List<Recipient> recipients = rule.getRecipients();
-						
-						RuleDTO ruleDto = new RuleDTO(rule);
-						ConnectionDTO connDto = new ConnectionDTO(conn);
-						
-						List<CheckDTO> checkDtos = new ArrayList<>();
-						List<RecipientDTO> recipientDtos = new ArrayList<>();
-						
-						if(checks != null && checks.size() > 0){
-							for(int j=0; j<checks.size(); j++){
-								CheckDTO checkDto = new CheckDTO(checks.get(j));
-								checkDtos.add(checkDto);
+						if(conn.getIsActive()){
+							List<Check> checks = rule.getChecks();
+							List<Recipient> recipients = rule.getRecipients();
+							
+							RuleDTO ruleDto = new RuleDTO(rule);
+							ConnectionDTO connDto = new ConnectionDTO(conn);
+							
+							List<CheckDTO> checkDtos = new ArrayList<>();
+							List<RecipientDTO> recipientDtos = new ArrayList<>();
+							
+							if(checks != null && checks.size() > 0){
+								for(int j=0; j<checks.size(); j++){
+									if(checks.get(j).getIsActive()){
+										CheckDTO checkDto = new CheckDTO(checks.get(j));
+										checkDtos.add(checkDto);
+									}
+								}
 							}
-						}
-						if(recipients != null && recipients.size() > 0){
-							for (int j =0; j<recipients.size(); j++){
-								RecipientDTO recipientDto = new RecipientDTO(recipients.get(j));
-								recipientDtos.add(recipientDto);
+							if(recipients != null && recipients.size() > 0){
+								for (int j =0; j<recipients.size(); j++){
+									if(recipients.get(i).getIsActive()){
+										RecipientDTO recipientDto = new RecipientDTO(recipients.get(j));
+										recipientDtos.add(recipientDto);
+									}
+								}
 							}
+							ExecutionServiceRuleDTO executionServiceRuleDTO = new ExecutionServiceRuleDTO(ruleDto, connDto, checkDtos, recipientDtos);
+							resList.add(executionServiceRuleDTO);
 						}
-						ExecutionServiceRuleDTO executionServiceRuleDTO = new ExecutionServiceRuleDTO(ruleDto, connDto, checkDtos, recipientDtos);
-						resList.add(executionServiceRuleDTO);
 					}
 				}
 			}
