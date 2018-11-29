@@ -173,7 +173,7 @@ public class RuleService {
 							}
 							if(recipients != null && recipients.size() > 0){
 								for (int j =0; j<recipients.size(); j++){
-									if(recipients.get(i).getIsActive()){
+									if(recipients.get(j).getIsActive()){
 										RecipientDTO recipientDto = new RecipientDTO(recipients.get(j));
 										recipientDtos.add(recipientDto);
 									}
